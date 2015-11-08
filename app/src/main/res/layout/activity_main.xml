@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+
+        <com.tesool.fitody.component.blur.BlurringView
+            android:id="@+id/blurView"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/main_sliding_height"
+            app:blurRadius="2dp"
+            app:downsampleFactor="10"
+            app:overlayColor="#99FFFFFF" />
+
+        <com.tesool.fitody.component.slidingtab.SlidingTabLayout
+            android:id="@+id/slidingTabs"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/main_sliding_height"
+            android:fillViewport="true" />
+        <!--android:background="@color/transparent_background_blur"-->
+    </FrameLayout>
+</RelativeLayout>

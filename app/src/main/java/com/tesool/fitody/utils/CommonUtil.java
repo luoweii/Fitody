@@ -1,4 +1,4 @@
-package com.luowei.fitody.utils;
+package com.tesool.fitody.utils;
 
 import android.app.Activity;
 import android.content.Context;
@@ -7,7 +7,7 @@ import android.util.DisplayMetrics;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
-import com.luowei.fitody.App;
+import com.tesool.fitody.App;
 
 import java.io.File;
 import java.text.SimpleDateFormat;

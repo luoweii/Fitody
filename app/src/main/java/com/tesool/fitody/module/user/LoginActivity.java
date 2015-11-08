@@ -1,4 +1,4 @@
-package com.luowei.fitody.module.user;
+package com.tesool.fitody.module.user;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -29,7 +29,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.luowei.fitody.R;
+import com.tesool.fitody.R;
 
 import java.util.ArrayList;
 import java.util.List;

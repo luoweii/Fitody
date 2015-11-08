@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--BluringView-->
+    <declare-styleable name="PxBlurringView">
+        <attr name="blurRadius" format="dimension" />
+        <attr name="downsampleFactor" format="integer" />
+        <attr name="overlayColor" format="color" />
+    </declare-styleable>
+</resources>

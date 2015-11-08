@@ -1,4 +1,4 @@
-package com.luowei.fitody.module;
+package com.tesool.fitody.module;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -6,11 +6,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
 
-import com.luowei.fitody.utils.CommonUtil;
-import com.luowei.fitody.utils.LogUtils;
+import com.tesool.fitody.utils.CommonUtil;
+import com.tesool.fitody.utils.LogUtils;
 
 import java.lang.reflect.Method;
 
+import butterknife.ButterKnife;
 import de.greenrobot.event.EventBus;
 
 /**
@@ -24,6 +25,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		LogUtils.i("--创建界面-->> " + getClass().getSimpleName());
 		eventBus = EventBus.getDefault();
 		eventBus.register(this);
 	}
@@ -31,9 +33,8 @@ public abstract class BaseActivity extends AppCompatActivity {
 	@Override
 	public void setContentView(int layoutResID) {
 		super.setContentView(layoutResID);
+		ButterKnife.bind(this);
 	}
-
-	public abstract String getActivityName();
 
 	@Override
 	protected void onStart() {
@@ -43,13 +44,13 @@ public abstract class BaseActivity extends AppCompatActivity {
 	@Override
 	protected void onResume() {
 		super.onResume();
-		LogUtils.i("--进入界面-->> " + getActivityName());
+		LogUtils.i("--进入界面-->> " + getClass().getSimpleName());
 	}
 
 	@Override
 	protected void onPause() {
 		super.onPause();
-		LogUtils.i("--离开界面-->> " + getActivityName());
+		LogUtils.i("--离开界面-->> " + getClass().getSimpleName());
 	}
 
 	@Override
@@ -62,7 +63,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 		super.onDestroy();
 		if (eventBus.isRegistered(this))
 			eventBus.unregister(this);
-		LogUtils.i("--销毁界面-->> " + getActivityName());
+		LogUtils.i("--销毁界面-->> " + getClass().getSimpleName());
 	}
 
 	@Override

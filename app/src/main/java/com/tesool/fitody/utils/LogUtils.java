@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-package com.luowei.fitody.utils;
+package com.tesool.fitody.utils;
 
 import android.text.TextUtils;
 import android.util.Log;
