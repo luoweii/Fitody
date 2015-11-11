@@ -5,6 +5,7 @@ import android.support.v4.view.ViewPager;
 
 import com.tesool.fitody.R;
 import com.tesool.fitody.component.slidingtab.SlidingTabLayout;
+import com.tesool.fitody.module.message.MainMessageFragment;
 import com.tesool.fitody.utils.CommonUtil;
 
 import java.util.Hashtable;
@@ -17,9 +18,9 @@ import butterknife.Bind;
 public class MainActivity extends BaseActivity {
     private long exitTime;//退出时间
     @Bind(R.id.viewPager)
-    private ViewPager viewPager;
-    @Bind()
-    private SlidingTabLayout slidingTabs;
+    ViewPager viewPager;
+    @Bind(R.id.slidingTabs)
+    SlidingTabLayout slidingTabs;
     private MainFragmentPagerAdapter pagerAdapter;
 
     @Override
@@ -28,18 +29,17 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
 
         pagerAdapter = new MainFragmentPagerAdapter(getSupportFragmentManager());
-        pagerAdapter.addFragment(MainHomeFragment.newInstance());
-        pagerAdapter.addFragment(MainSearchFragment.newInstance());
-        pagerAdapter.addFragment(MainMeFragment.newInstance());
+        pagerAdapter.addFragment(MainMessageFragment.newInstance());
+        pagerAdapter.addFragment(MainMessageFragment.newInstance());
+        pagerAdapter.addFragment(MainMessageFragment.newInstance());
         // viewPager.setPageTransformer(true, new FadeInOutPageTransformer());
         viewPager.setOffscreenPageLimit(3);
         viewPager.setAdapter(pagerAdapter);
 
-        slidingTabs = (com.karakal.ringtonemanager.widget.slidingtab.SlidingTabLayout) findViewById(R.id.sliding_tabs);
         slidingTabs.setCustomTabIcon(R.layout.tab_indicator_navigation, R.id.iv_main, R.id.iv_main_alpha, R.id.tv_main);
-        slidingTabs.setSelectedIndicatorColors(getResources().getColor(R.color.navigation_indicator_green));
-        slidingTabs.setSelectedIndicatorThickness(CommonUtil.dp2px(this, 3.3f));
         slidingTabs.setDistributeEvenly(true);
+        slidingTabs.setSelectedIndicatorThickness(0);
+        slidingTabs.setTopBorderThickness(CommonUtil.dp2px(0.5f));
         slidingTabs.setViewPager(viewPager);// 最后设置viewpager
         slidingTabs.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -63,17 +63,6 @@ public class MainActivity extends BaseActivity {
 //        int free = (int) (Runtime.getRuntime().freeMemory() / 1024 / 1024);
 //        LogUtils.d("------------------\n"+"max: "+max+" use "+use+" free "+free);
 
-        //咪咕SDK初始化
-        InitCmmInterface.initSDK(this);
-        //咪咕用户初始化
-        new Thread() {
-            @Override
-            public void run() {
-                LogUtils.w("-----------------start initCmmEnv---------------------------");
-                Hashtable<String, String> hashtable = InitCmmInterface.initCmmEnv(MainActivity.this);
-                LogUtils.w("-----------------initCmmEnv result-----------------------\n" + hashtable.toString());
-            }
-        }.start();
     }
 
     @Override

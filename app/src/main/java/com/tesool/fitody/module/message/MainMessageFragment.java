@@ -22,9 +22,9 @@ import butterknife.Bind;
  */
 public class MainMessageFragment extends IconFragment {
     @Bind(R.id.swipeRefreshLayout)
-    private SwipeRefreshLayout swipeRefreshLayout;
+    SwipeRefreshLayout swipeRefreshLayout;
     @Bind(R.id.listView)
-    private ListView listView;
+    ListView listView;
     private List<String> data = new ArrayList<>();
 
     private BaseAdapter adapter = new BaseAdapter() {
@@ -89,17 +89,17 @@ public class MainMessageFragment extends IconFragment {
 
     @Override
     public int getIcon() {
-        return R.drawable.ic_main_home;
+        return R.drawable.ic_explore_grey;
     }
 
     @Override
     public int getAlphaIcon() {
-        return R.drawable.ic_main_home1;
+        return R.drawable.ic_explore_grey1;
     }
 
     @Override
     protected String getTitle() {
-        return App.context.getResources().getString(R.string.main_home);
+        return "消息";
     }
 
     @Override
