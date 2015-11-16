@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.graphics.Bitmap;
 
+import com.tesool.fitody.net.MHttp;
 import com.tesool.fitody.utils.LogUtils;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -19,6 +20,8 @@ import java.util.Map;
  */
 public class App extends Application {
     public static Context context;
+    //用户登录以后获取的通行证
+    public static String TOKEN;
 
     //保存全局环境变量
     public static Map<Object, Object> maps;
@@ -47,10 +50,11 @@ public class App extends Application {
         context = getApplicationContext();
         if (maps == null) maps = new HashMap<>();
 
+//        LeakCanary.install(this);
         initImageLoader();
 
-//        LeakCanary.install(this);
-
+        //设置MHttp缓存路径
+        MHttp.httpCache.setDiskCachePath(getExternalCacheDir().getPath() + "/net");
     }
 
     private void initImageLoader() {
@@ -66,7 +70,7 @@ public class App extends Application {
                 .Builder(getApplicationContext())
                 .threadPoolSize(3)
                 .memoryCacheExtraOptions(720, 1280)  // 缓存到内存的图片大小范围
-                .diskCacheSize(50 * 1024 * 1024)  // 50Mb
+                .diskCacheSize(100 * 1024 * 1024)  // 100Mb
                 .threadPriority(Thread.NORM_PRIORITY - 2)
                 .defaultDisplayImageOptions(options)
                 .denyCacheImageMultipleSizesInMemory().build();

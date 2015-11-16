@@ -1,7 +1,9 @@
-package com.tesool.fitody.module;
+package com.tesool.fitody.adapter;
 
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+
+import com.tesool.fitody.fragment.IconFragment;
 
 import org.json.JSONException;
 import org.json.JSONObject;

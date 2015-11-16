@@ -16,11 +16,13 @@
 package com.tesool.fitody.utils;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.os.Build;
 import android.os.Environment;
 import android.os.StatFs;
 import android.text.TextUtils;
 
+import java.io.Closeable;
 import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Field;

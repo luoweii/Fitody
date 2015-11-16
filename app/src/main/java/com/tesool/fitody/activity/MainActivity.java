@@ -1,14 +1,16 @@
-package com.tesool.fitody.module;
+package com.tesool.fitody.activity;
 
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 
 import com.tesool.fitody.R;
 import com.tesool.fitody.component.slidingtab.SlidingTabLayout;
-import com.tesool.fitody.module.message.MainMessageFragment;
+import com.tesool.fitody.adapter.MainFragmentPagerAdapter;
+import com.tesool.fitody.fragment.MainAroundFragment;
+import com.tesool.fitody.fragment.MainDiscoverFragment;
+import com.tesool.fitody.fragment.MainMessageFragment;
+import com.tesool.fitody.fragment.MainUserFragment;
 import com.tesool.fitody.utils.CommonUtil;
-
-import java.util.Hashtable;
 
 import butterknife.Bind;
 
@@ -30,8 +32,9 @@ public class MainActivity extends BaseActivity {
 
         pagerAdapter = new MainFragmentPagerAdapter(getSupportFragmentManager());
         pagerAdapter.addFragment(MainMessageFragment.newInstance());
-        pagerAdapter.addFragment(MainMessageFragment.newInstance());
-        pagerAdapter.addFragment(MainMessageFragment.newInstance());
+        pagerAdapter.addFragment(MainAroundFragment.newInstance());
+        pagerAdapter.addFragment(MainDiscoverFragment.newInstance());
+        pagerAdapter.addFragment(MainUserFragment.newInstance());
         // viewPager.setPageTransformer(true, new FadeInOutPageTransformer());
         viewPager.setOffscreenPageLimit(3);
         viewPager.setAdapter(pagerAdapter);

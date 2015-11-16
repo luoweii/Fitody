@@ -1,4 +1,4 @@
-package com.tesool.fitody.module.message;
+package com.tesool.fitody.fragment;
 
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -7,9 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 
-import com.tesool.fitody.App;
 import com.tesool.fitody.R;
-import com.tesool.fitody.module.IconFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +18,7 @@ import butterknife.Bind;
  * 主栏目
  * Created by 骆巍 on 2015/8/13.
  */
-public class MainMessageFragment extends IconFragment {
+public class MainDiscoverFragment extends IconFragment {
     @Bind(R.id.swipeRefreshLayout)
     SwipeRefreshLayout swipeRefreshLayout;
     @Bind(R.id.listView)
@@ -53,8 +51,8 @@ public class MainMessageFragment extends IconFragment {
         }
     };
 
-    public static MainMessageFragment newInstance() {
-        MainMessageFragment fragment = new MainMessageFragment();
+    public static MainDiscoverFragment newInstance() {
+        MainDiscoverFragment fragment = new MainDiscoverFragment();
         return fragment;
     }
 
@@ -78,6 +76,7 @@ public class MainMessageFragment extends IconFragment {
                 getData();
             }
         });
+        swipeRefreshLayout.setColorSchemeResources(R.color.colorAccent);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -89,21 +88,21 @@ public class MainMessageFragment extends IconFragment {
 
     @Override
     public int getIcon() {
-        return R.drawable.ic_explore_grey;
+        return R.drawable.ic_main_discover;
     }
 
     @Override
     public int getAlphaIcon() {
-        return R.drawable.ic_explore_grey1;
+        return R.drawable.ic_main_discover1;
     }
 
     @Override
-    protected String getTitle() {
-        return "消息";
+    public String getTitle() {
+        return "发现";
     }
 
     @Override
-    protected int getLayout() {
+    public int getLayout() {
         return R.layout.fragment_main_message;
     }
 

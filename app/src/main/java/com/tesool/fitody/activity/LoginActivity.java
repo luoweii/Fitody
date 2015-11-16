@@ -1,4 +1,4 @@
-package com.tesool.fitody.module.user;
+package com.tesool.fitody.activity;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;

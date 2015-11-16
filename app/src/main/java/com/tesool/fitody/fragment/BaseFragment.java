@@ -1,4 +1,4 @@
-package com.tesool.fitody.module;
+package com.tesool.fitody.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
@@ -72,8 +72,8 @@ public abstract class BaseFragment extends Fragment {
     }
 
     @StringRes
-    protected abstract String getTitle();
+    public abstract String getTitle();
 
     @LayoutRes
-    protected abstract int getLayout();
+    public abstract int getLayout();
 }

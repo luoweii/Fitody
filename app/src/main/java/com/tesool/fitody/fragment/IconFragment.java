@@ -1,4 +1,4 @@
-package com.tesool.fitody.module;
+package com.tesool.fitody.fragment;
 
 import android.app.Activity;
 import android.support.annotation.DrawableRes;
