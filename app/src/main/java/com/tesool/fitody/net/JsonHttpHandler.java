@@ -38,6 +38,7 @@ public abstract class JsonHttpHandler<T> extends TextHttpResponseHandler {
                     T data = processResult(str);
                     onSuccess(data);
                     if (enableCache && str != null) {
+                        //// TODO: 2015/11/17 以后还需要加上用户和请求参数 作为key
                         MHttp.httpCache.put(getRequestURI().toString(), str);
                     }
                     break;
