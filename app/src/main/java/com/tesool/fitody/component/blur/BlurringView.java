@@ -58,9 +58,9 @@ public class BlurringView extends View {
                 // If the background of the blurred view is a color drawable, we use it to clear
                 // the blurring canvas, which ensures that edges of the child views are blurred
                 // as well; otherwise we clear the blurring canvas with a transparent color.
-                if (mBlurredView.getBackground() != null && mBlurredView.getBackground() instanceof ColorDrawable){
+                if (mBlurredView.getBackground() != null && mBlurredView.getBackground() instanceof ColorDrawable) {
                     mBitmapToBlur.eraseColor(((ColorDrawable) mBlurredView.getBackground()).getColor());
-                }else {
+                } else {
                     mBitmapToBlur.eraseColor(Color.TRANSPARENT);
                 }
 
@@ -103,7 +103,7 @@ public class BlurringView extends View {
 
     protected boolean prepare() {
         final int width = getWidth();
-        final int height =getHeight();
+        final int height = getHeight();
 
         if (mBlurringCanvas == null || mDownsampleFactorChanged
                 || mBlurredViewWidth != width || mBlurredViewHeight != height) {
@@ -146,6 +146,12 @@ public class BlurringView extends View {
     }
 
     protected void blur() {
+//        try {
+//            FileOutputStream fos = new FileOutputStream(Environment.getExternalStorageDirectory()+"/download/temp.png");
+//            mBitmapToBlur.compress(Bitmap.CompressFormat.PNG, 90, fos);
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        }
         mBlurInput.copyFrom(mBitmapToBlur);
         mBlurScript.setInput(mBlurInput);
         mBlurScript.forEach(mBlurOutput);
@@ -155,7 +161,7 @@ public class BlurringView extends View {
     @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        if (mRenderScript != null){
+        if (mRenderScript != null) {
             mRenderScript.destroy();
         }
     }

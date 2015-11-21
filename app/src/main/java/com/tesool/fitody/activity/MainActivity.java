@@ -2,10 +2,14 @@ package com.tesool.fitody.activity;
 
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.view.View;
+import android.widget.FrameLayout;
 
 import com.tesool.fitody.R;
-import com.tesool.fitody.component.slidingtab.SlidingTabLayout;
 import com.tesool.fitody.adapter.MainFragmentPagerAdapter;
+import com.tesool.fitody.component.blur.BlurringView;
+import com.tesool.fitody.component.slidingtab.SlidingTabLayout;
+import com.tesool.fitody.fragment.IconFragment;
 import com.tesool.fitody.fragment.MainAroundFragment;
 import com.tesool.fitody.fragment.MainDiscoverFragment;
 import com.tesool.fitody.fragment.MainMessageFragment;
@@ -17,13 +21,17 @@ import butterknife.Bind;
 /**
  * Created by luowei on 2015/11/7.
  */
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements IconFragment.IconIndicatorListener{
     private long exitTime;//退出时间
     @Bind(R.id.viewPager)
     ViewPager viewPager;
     @Bind(R.id.slidingTabs)
     SlidingTabLayout slidingTabs;
     private MainFragmentPagerAdapter pagerAdapter;
+    @Bind(R.id.blurView)
+    BlurringView blurringView;
+    @Bind(R.id.flViewPager)
+    FrameLayout flViewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +55,7 @@ public class MainActivity extends BaseActivity {
         slidingTabs.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
+                blurringView.invalidate();
             }
 
             @Override
@@ -60,6 +68,15 @@ public class MainActivity extends BaseActivity {
 
             }
         });
+
+        blurringView.setBlurredView(flViewPager);
+        blurringView.post(new Runnable() {
+            @Override
+            public void run() {
+                blurringView.invalidate();
+            }
+        });
+
 //查看手机app内存情况
 //        int max = (int) (Runtime.getRuntime().maxMemory() / 1024 / 1024);
 //        int use = (int) (Runtime.getRuntime().totalMemory()/1024/1024);
@@ -76,5 +93,23 @@ public class MainActivity extends BaseActivity {
             exitTime = System.currentTimeMillis();
             CommonUtil.showToast("再点一次返回键退出程序");
         }
+    }
+
+    @Override
+    public void onScroll(View view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+
+//        try {
+//            FileOutputStream fos = new FileOutputStream(Environment.getExternalStorageDirectory()+"/download/temp.png");
+//            Bitmap b = Bitmap.createBitmap(flViewPager.getWidth()/10, flViewPager.getHeight()/10, Bitmap.Config.ARGB_8888);
+//            Canvas c = new Canvas(b);
+//            c.scale(0.1f, 0.1f);
+//            flViewPager.draw(c);
+//            b.compress(Bitmap.CompressFormat.PNG, 90, fos);
+//            fos.close();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+
+        blurringView.invalidate();
     }
 }

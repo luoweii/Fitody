@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 
@@ -62,13 +63,28 @@ public class MainAroundFragment extends IconFragment {
     }
 
     public void getData() {
+        for (int i = 0; i < 50; i++) {
+            data.add("附近");
+        }
+        swipeRefreshLayout.setRefreshing(false);
+        adapter.notifyDataSetChanged();
     }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        listView.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                iconListener.onScroll(view,firstVisibleItem,visibleItemCount,totalItemCount);
+            }
+        });
         listView.setAdapter(adapter);
-//        swipeRefreshLayout.setColorSchemeResources(R.color.font_theme);
         swipeRefreshLayout.post(new Runnable() {
             @Override
             public void run() {

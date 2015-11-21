@@ -4,10 +4,13 @@ import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.tesool.fitody.R;
+import com.tesool.fitody.utils.ViewHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,6 +50,8 @@ public class MainMessageFragment extends IconFragment {
             if (convertView == null) {
                 convertView = inflater.inflate(R.layout.list_item_main_message, null);
             }
+            TextView tvName = ViewHelper.get(convertView, R.id.tvName);
+            tvName.setText(data.get(position));
             return convertView;
         }
     };
@@ -62,13 +67,30 @@ public class MainMessageFragment extends IconFragment {
     }
 
     public void getData() {
+        data.clear();
+        for (int i = 0; i < 20; i++) {
+            data.add("名字"+i);
+        }
+        swipeRefreshLayout.setRefreshing(false);
+        adapter.notifyDataSetChanged();
+        iconListener.onScroll(null,0,0,0);
     }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        listView.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                iconListener.onScroll(view, firstVisibleItem, visibleItemCount, totalItemCount);
+            }
+        });
         listView.setAdapter(adapter);
-//        swipeRefreshLayout.setColorSchemeResources(R.color.font_theme);
         swipeRefreshLayout.post(new Runnable() {
             @Override
             public void run() {
