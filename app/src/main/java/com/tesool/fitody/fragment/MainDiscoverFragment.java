@@ -19,8 +19,6 @@ import butterknife.Bind;
  * Created by 骆巍 on 2015/8/13.
  */
 public class MainDiscoverFragment extends IconFragment {
-    @Bind(R.id.swipeRefreshLayout)
-    SwipeRefreshLayout swipeRefreshLayout;
     @Bind(R.id.listView)
     ListView listView;
     private List<String> data = new ArrayList<>();
@@ -68,21 +66,7 @@ public class MainDiscoverFragment extends IconFragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         listView.setAdapter(adapter);
-//        swipeRefreshLayout.setColorSchemeResources(R.color.font_theme);
-        swipeRefreshLayout.post(new Runnable() {
-            @Override
-            public void run() {
-                swipeRefreshLayout.setRefreshing(true);
-                getData();
-            }
-        });
-        swipeRefreshLayout.setColorSchemeResources(R.color.colorAccent);
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                getData();
-            }
-        });
+        getData();
     }
 
 
@@ -103,7 +87,7 @@ public class MainDiscoverFragment extends IconFragment {
 
     @Override
     public int getLayout() {
-        return R.layout.fragment_main_message;
+        return R.layout.fragment_main_discover;
     }
 
 }

@@ -22,8 +22,6 @@ import butterknife.Bind;
  * Created by 骆巍 on 2015/8/13.
  */
 public class MainMessageFragment extends IconFragment {
-    @Bind(R.id.swipeRefreshLayout)
-    SwipeRefreshLayout swipeRefreshLayout;
     @Bind(R.id.listView)
     ListView listView;
     private List<String> data = new ArrayList<>();
@@ -69,11 +67,9 @@ public class MainMessageFragment extends IconFragment {
     public void getData() {
         data.clear();
         for (int i = 0; i < 20; i++) {
-            data.add("名字"+i);
+            data.add("名字" + i);
         }
-        swipeRefreshLayout.setRefreshing(false);
         adapter.notifyDataSetChanged();
-        iconListener.onScroll(null,0,0,0);
     }
 
     @Override
@@ -91,20 +87,7 @@ public class MainMessageFragment extends IconFragment {
             }
         });
         listView.setAdapter(adapter);
-        swipeRefreshLayout.post(new Runnable() {
-            @Override
-            public void run() {
-                swipeRefreshLayout.setRefreshing(true);
-                getData();
-            }
-        });
-        swipeRefreshLayout.setColorSchemeResources(R.color.colorAccent);
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                getData();
-            }
-        });
+        getData();
     }
 
 

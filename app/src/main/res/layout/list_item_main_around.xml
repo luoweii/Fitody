@@ -11,7 +11,7 @@
         android:layout_height="60dp"
         android:layout_margin="6dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/test_lss" />
+        android:src="@drawable/test_jjw" />
 
     <TextView
         android:id="@+id/tvName"
@@ -23,7 +23,7 @@
         android:paddingLeft="6dp"
         android:paddingTop="10dp"
         android:singleLine="true"
-        android:text="名字"
+        android:text="附近的需求"
         android:textSize="17sp" />
 
     <TextView

@@ -1,6 +1,9 @@
 package com.tesool.fitody.activity;
 
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -15,6 +18,8 @@ import com.tesool.fitody.fragment.MainDiscoverFragment;
 import com.tesool.fitody.fragment.MainMessageFragment;
 import com.tesool.fitody.fragment.MainUserFragment;
 import com.tesool.fitody.utils.CommonUtil;
+
+import java.io.FileOutputStream;
 
 import butterknife.Bind;
 
@@ -97,11 +102,11 @@ public class MainActivity extends BaseActivity implements IconFragment.IconIndic
 
     @Override
     public void onScroll(View view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-
 //        try {
-//            FileOutputStream fos = new FileOutputStream(Environment.getExternalStorageDirectory()+"/download/temp.png");
-//            Bitmap b = Bitmap.createBitmap(flViewPager.getWidth()/10, flViewPager.getHeight()/10, Bitmap.Config.ARGB_8888);
+//            FileOutputStream fos = new FileOutputStream(Environment.getExternalStorageDirectory() + "/download/temp.png");
+//            Bitmap b = Bitmap.createBitmap(flViewPager.getWidth() / 10, blurringView.getHeight() / 10, Bitmap.Config.ARGB_8888);
 //            Canvas c = new Canvas(b);
+//            c.translate(0, blurringView.getHeight() - flViewPager.getHeight());
 //            c.scale(0.1f, 0.1f);
 //            flViewPager.draw(c);
 //            b.compress(Bitmap.CompressFormat.PNG, 90, fos);

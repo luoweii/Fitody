@@ -27,7 +27,7 @@
             android:layout_height="@dimen/main_sliding_height"
             app:blurRadius="2dp"
             app:downsampleFactor="10"
-            app:overlayColor="#00FFFFFF" />
+            app:overlayColor="#66FFFFFF" />
 
         <com.tesool.fitody.component.slidingtab.SlidingTabLayout
             android:id="@+id/slidingTabs"

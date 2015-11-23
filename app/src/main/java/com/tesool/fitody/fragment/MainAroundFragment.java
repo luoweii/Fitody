@@ -20,8 +20,6 @@ import butterknife.Bind;
  * Created by 骆巍 on 2015/8/13.
  */
 public class MainAroundFragment extends IconFragment {
-    @Bind(R.id.swipeRefreshLayout)
-    SwipeRefreshLayout swipeRefreshLayout;
     @Bind(R.id.listView)
     ListView listView;
     private List<String> data = new ArrayList<>();
@@ -46,7 +44,7 @@ public class MainAroundFragment extends IconFragment {
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             if (convertView == null) {
-                convertView = inflater.inflate(R.layout.list_item_main_message, null);
+                convertView = inflater.inflate(R.layout.list_item_main_around, null);
             }
             return convertView;
         }
@@ -66,7 +64,6 @@ public class MainAroundFragment extends IconFragment {
         for (int i = 0; i < 50; i++) {
             data.add("附近");
         }
-        swipeRefreshLayout.setRefreshing(false);
         adapter.notifyDataSetChanged();
     }
 
@@ -81,24 +78,11 @@ public class MainAroundFragment extends IconFragment {
 
             @Override
             public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-                iconListener.onScroll(view,firstVisibleItem,visibleItemCount,totalItemCount);
+                iconListener.onScroll(view, firstVisibleItem, visibleItemCount, totalItemCount);
             }
         });
         listView.setAdapter(adapter);
-        swipeRefreshLayout.post(new Runnable() {
-            @Override
-            public void run() {
-                swipeRefreshLayout.setRefreshing(true);
-                getData();
-            }
-        });
-        swipeRefreshLayout.setColorSchemeResources(R.color.colorAccent);
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                getData();
-            }
-        });
+        getData();
     }
 
 
@@ -119,7 +103,7 @@ public class MainAroundFragment extends IconFragment {
 
     @Override
     public int getLayout() {
-        return R.layout.fragment_main_message;
+        return R.layout.fragment_main_around;
     }
 
 }
