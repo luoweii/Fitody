@@ -12,11 +12,17 @@ android {
         versionName "1.0"
         renderscriptTargetApi 23
         renderscriptSupportModeEnabled true
+        manifestPlaceholders = [app_label:"@string/app_name"]
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        debug {
+//            applicationIdSuffix '.dev'
+            manifestPlaceholders = [app_label:"@string/app_name_debug"]
         }
     }
     
@@ -25,8 +31,8 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:23.1.0'
-    compile 'com.android.support:design:23.1.0'
+    compile 'com.android.support:appcompat-v7:23.1.1'
+    compile 'com.android.support:design:23.1.1'
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.4'
     compile 'de.greenrobot:eventbus:2.4.0'
     compile 'com.jakewharton:butterknife:7.0.1'
