@@ -1,5 +1,6 @@
 package com.tesool.fitody.fragment;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
@@ -9,11 +10,16 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 
 import com.tesool.fitody.R;
+import com.tesool.fitody.utils.CommonUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
+import in.srain.cube.views.ptr.PtrDefaultHandler;
+import in.srain.cube.views.ptr.PtrFrameLayout;
+import in.srain.cube.views.ptr.PtrHandler;
+import in.srain.cube.views.ptr.header.StoreHouseHeader;
 
 /**
  * 主栏目
@@ -23,6 +29,8 @@ public class MainAroundFragment extends IconFragment {
     @Bind(R.id.listView)
     ListView listView;
     private List<String> data = new ArrayList<>();
+    @Bind(R.id.ptrFrameLayout)
+    PtrFrameLayout ptrFrameLayout;
 
     private BaseAdapter adapter = new BaseAdapter() {
 
@@ -70,6 +78,31 @@ public class MainAroundFragment extends IconFragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
+        StoreHouseHeader header = new StoreHouseHeader(getContext());
+        header.setTextColor(Color.RED);
+        header.setPadding(0, CommonUtil.dp2px(16), 0, CommonUtil.dp2px(16));
+        header.initWithString("luo wei");
+        ptrFrameLayout.setDurationToCloseHeader(500);
+        ptrFrameLayout.setHeaderView(header);
+        ptrFrameLayout.addPtrUIHandler(header);
+        ptrFrameLayout.setPtrHandler(new PtrHandler() {
+            @Override
+            public boolean checkCanDoRefresh(PtrFrameLayout frame, View content, View header) {
+                return PtrDefaultHandler.checkContentCanBePulledDown(frame, content, header);
+            }
+
+            @Override
+            public void onRefreshBegin(PtrFrameLayout frame) {
+                ptrFrameLayout.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        ptrFrameLayout.refreshComplete();
+                    }
+                }, 1500);
+            }
+        });
+
         listView.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(AbsListView view, int scrollState) {

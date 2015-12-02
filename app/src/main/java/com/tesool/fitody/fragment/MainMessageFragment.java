@@ -1,5 +1,6 @@
 package com.tesool.fitody.fragment;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.tesool.fitody.R;
+import com.tesool.fitody.utils.CommonUtil;
 import com.tesool.fitody.utils.ViewHelper;
 
 import java.util.ArrayList;
@@ -75,6 +77,7 @@ public class MainMessageFragment extends IconFragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
         listView.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(AbsListView view, int scrollState) {
