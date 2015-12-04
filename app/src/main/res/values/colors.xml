@@ -8,5 +8,6 @@
 
     <color name="transparent">#0000</color>
     <color name="gallery">#eee</color>
+    <color name="Gainsboro">#ddd</color>
     <color name="white">#fff</color>
 </resources>

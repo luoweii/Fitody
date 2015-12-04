@@ -3,12 +3,17 @@ package com.tesool.fitody.fragment;
 import android.os.Bundle;
 
 import com.tesool.fitody.R;
+import com.tesool.fitody.activity.LoginActivity;
+import com.tesool.fitody.utils.CommonUtil;
+
+import butterknife.OnLongClick;
 
 /**
  * 主栏目
  * Created by 骆巍 on 2015/8/13.
  */
 public class MainUserFragment extends IconFragment {
+
     public static MainUserFragment newInstance() {
         MainUserFragment fragment = new MainUserFragment();
         return fragment;
@@ -45,4 +50,9 @@ public class MainUserFragment extends IconFragment {
         return R.layout.fragment_main_user;
     }
 
+    @OnLongClick(R.id.llUser)
+    public boolean userOnLongClick() {
+        LoginActivity.startActivity(getContext());
+        return true;
+    }
 }
