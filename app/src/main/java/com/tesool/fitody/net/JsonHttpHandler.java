@@ -4,11 +4,12 @@ import com.loopj.android.http.TextHttpResponseHandler;
 import com.tesool.fitody.utils.JSONUtil;
 import com.tesool.fitody.utils.LogUtils;
 
-import org.apache.http.Header;
 import org.json.JSONObject;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+
+import cz.msebera.android.httpclient.Header;
 
 /**
  * Created by luowei on 2015/10/25.
